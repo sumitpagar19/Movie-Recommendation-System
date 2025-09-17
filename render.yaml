@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: cineai-movie-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: TMDB_API_KEY
+        sync: false  # Set this in Render dashboard
+      - key: PYTHON_VERSION
+        value: 3.9.18 
