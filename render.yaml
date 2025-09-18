@@ -2,10 +2,10 @@ services:
   - type: web
     name: cineai-movie-app
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app --timeout 120 --workers 1
     envVars:
       - key: TMDB_API_KEY
         sync: false  # Set this in Render dashboard
       - key: PYTHON_VERSION
-        value: 3.9.18 
+        value: 3.11.7
